@@ -114,7 +114,8 @@ async function filterHotel () {
 
 filterHotel();
 
-
+const loginEmail = document.getElementById("loginemail");
+const password = document.getElementById("password");
 
 function init() {
     getWorks();
