@@ -148,6 +148,16 @@ header {
 	margin: 50px 0
 }
 
+main h2 {
+    text-align: center;
+}
+
+main a {
+    display: flex;
+    justify-content: center;
+    color: black;
+}
+
 section {
 	margin: 50px 0
 }

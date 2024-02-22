@@ -1,5 +1,7 @@
+//let donneeSauvegarde = window.localStorage.getItem("tableau");
+
 async function getWorks() {
-    const url = "http://localhost:5678/api/works";
+    const url = "http://localhost:5678/api/works"; // .catch (function (){console.log(error);})
     try {
         const reponse = await fetch(url);
         return await reponse.json();
@@ -7,6 +9,10 @@ async function getWorks() {
         console.log(error);
     }
 }
+
+//const resultat = await getWorks();
+//const sauvegarde = JSON.stringify(resultat);
+//window.localStorage.setItem("tableau", sauvegarde);
 
 async function renderWorks() {
     const works = await getWorks();
@@ -70,7 +76,6 @@ async function filterObjet () {
                 imageWorks.splice(i,1);
                 imageTitle.splice(i,1);
             }
-            console.log(works);
         }
     });
 }
@@ -108,6 +113,8 @@ async function filterHotel () {
 }
 
 filterHotel();
+
+
 
 function init() {
     getWorks();
