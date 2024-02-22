@@ -14,8 +14,8 @@ async function getWorks() {
 //const sauvegarde = JSON.stringify(resultat);
 //window.localStorage.setItem("tableau", sauvegarde);
 
-async function renderWorks() {
-    const works = await getWorks();
+async function renderWorks(works) {
+    //const works = await getWorks();
     let html = "";
     works.forEach(work => {
         let htmlSegment = `<figure>
@@ -56,27 +56,24 @@ async function renderCategories() {
     gallery.innerHTML = html; */
 }
 
-async function filterObjet () {
+async function filtreWorks (id) {
+    const works = await getWorks();
+    const filtreDeWorks = works.filter(function (work) {
+        return work.categoryId == id;
+    });
+    return filtreDeWorks;
+} 
+
+async function filterObjet (id) {
 
     const boutonFiltrerObjets = document.querySelector(".objets");
 
     const works = await getWorks();
 
     boutonFiltrerObjets.addEventListener("click", function () {
-        const objetsFiltrees = works.filter(function (work) {
-            return work.categoryId == 1;
-        });
-        console.log(objetsFiltrees);
-
-        const imageWorks = works.map(work => work.imageUrl);
-        const imageTitle = works.map(work => work.title);
-
-        for (let i = works.length-1; i>=0; i--){
-            if (works[i].categoryId != 1){
-                imageWorks.splice(i,1);
-                imageTitle.splice(i,1);
-            }
-        }
+    let reponse = filtreWorks(1);
+    console.log(reponse);
+    renderWorks(reponse);
     });
 }
 
@@ -114,15 +111,10 @@ async function filterHotel () {
 
 filterHotel();
 
-const loginEmail = document.getElementById("loginemail");
-const password = document.getElementById("password");
-
-function init() {
-    getWorks();
-    console.log(getWorks());
+async function init() {
+    const works = await getWorks();
+    renderWorks(works);
     getCategories();
-    console.log(getCategories());
-    renderWorks();
     renderCategories();
 }
 
