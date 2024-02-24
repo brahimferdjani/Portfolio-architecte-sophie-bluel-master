@@ -209,13 +209,6 @@ nav>ul::after {
 	clear: both;
 }
 
-
-li:hover {
-	color: #B1663C;
-	font-size: 1.2em;
-	cursor: pointer;
-}
-
 #introduction {
 	display: flex;
 	align-items: center;
