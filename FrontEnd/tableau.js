@@ -46,6 +46,9 @@ async function renderCategories() {
     bouttons.innerHTML = bouttonTous + html;
 }
 
+const filtreBoutton = document.querySelector(".bouttons button");
+console.log(filtreBoutton);
+
 async function filtreWorks(id) {
     const works = await getWorks();
     const filtreDeWorks = works.filter(function (work) {
