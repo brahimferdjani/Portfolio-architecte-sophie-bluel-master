@@ -1,7 +1,5 @@
-//let donneeSauvegarde = window.localStorage.getItem("tableau");
-
 async function getWorks() {
-    const url = "http://localhost:5678/api/works"; // .catch (function (){console.log(error);})
+    const url = "http://localhost:5678/api/works";
     try {
         const reponse = await fetch(url);
         return await reponse.json();
@@ -10,12 +8,7 @@ async function getWorks() {
     }
 }
 
-//const resultat = await getWorks();
-//const sauvegarde = JSON.stringify(resultat);
-//window.localStorage.setItem("tableau", sauvegarde);
-
 async function renderWorks(works) {
-    //const works = await getWorks();
     let html = "";
     works.forEach(work => {
         let htmlSegment = `<figure>
@@ -42,74 +35,24 @@ async function getCategories() {
 
 async function renderCategories() {
     const categories = await getCategories();
-    /* let html = "";
+    let html = "";
     categories.forEach(category => {
-        let htmlSegment = `<figure>
-                            <img src="${work.imageUrl}" >
-                            <figcaption>${work.title}</figcaption>
-                        </figure>`;
-
+        let htmlSegment = `<button>${category.name}</button>`;
         html += htmlSegment;
     });
+    let bouttonTous = `<button>Tous</button>`
 
-    const gallery = document.querySelector(".gallery");
-    gallery.innerHTML = html; */
+    const bouttons = document.querySelector(".bouttons");
+    bouttons.innerHTML = bouttonTous + html;
 }
 
-async function filtreWorks (id) {
+async function filtreWorks(id) {
     const works = await getWorks();
     const filtreDeWorks = works.filter(function (work) {
         return work.categoryId == id;
     });
     return filtreDeWorks;
-} 
-
-async function filterObjet (id) {
-
-    const boutonFiltrerObjets = document.querySelector(".objets");
-
-    const works = await getWorks();
-
-    boutonFiltrerObjets.addEventListener("click", function () {
-    let reponse = filtreWorks(1);
-    console.log(reponse);
-    renderWorks(reponse);
-    });
 }
-
-filterObjet();
-
-async function filterAppartements () {
-
-    const boutonFiltrerObjets = document.querySelector(".appartements");
-
-    const works = await getWorks();
-
-    boutonFiltrerObjets.addEventListener("click", function () {
-        const objetsFiltrees = works.filter(function (work) {
-            return work.categoryId == 2;
-        });
-        console.log(objetsFiltrees);
-    });
-}
-
-filterAppartements();
-
-async function filterHotel () {
-
-    const boutonFiltrerObjets = document.querySelector(".hotels");
-
-    const works = await getWorks();
-
-    boutonFiltrerObjets.addEventListener("click", function () {
-        const objetsFiltrees = works.filter(function (work) {
-            return work.categoryId == 3;
-        });
-        console.log(objetsFiltrees);
-    });
-}
-
-filterHotel();
 
 async function init() {
     const works = await getWorks();
