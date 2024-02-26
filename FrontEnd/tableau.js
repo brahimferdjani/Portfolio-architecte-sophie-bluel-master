@@ -46,7 +46,15 @@ async function renderCategories() {
     bouttons.innerHTML = bouttonTous + html;
 }
 
-async function filtreBouttons(){
+async function filtreWorks(id) {
+    const works = await getWorks();
+    const filtreDeWorks = works.filter(function (work) {
+        return work.categoryId === id;
+    });
+    return renderWorks(filtreDeWorks);
+}
+
+function filtreBouttons(){
     const filtreBoutton = document.querySelectorAll(".bouttons button");
 
     for (let i=0; i<filtreBoutton.length; i++){
@@ -54,14 +62,6 @@ async function filtreBouttons(){
             filtreWorks(i);
         })
     }
-}
-
-async function filtreWorks(id) {
-    const works = await getWorks();
-    const filtreDeWorks = works.filter(function (work) {
-        return work.categoryId === id;
-    });
-    return renderWorks(filtreDeWorks);
 }
 
 async function init() {
