@@ -37,13 +37,13 @@ async function renderCategories() {
     const categories = await getCategories();
     let html = "";
     categories.forEach(category => {
-        let htmlSegment = `<button>${category.name}</button>`;
+        let htmlSegment = `<button id=${category.id}>${category.name}</button>`;
         html += htmlSegment;
     });
-    let bouttonTous = `<button>Tous</button>`
+    let bouttonTous = `<button id=0>Tous</button>`
 
     const bouttons = document.querySelector(".bouttons");
-    bouttons.innerHTML = bouttonTous + html;
+    bouttons.innerHTML = bouttonTous + html;    
 }
 
 async function filtreWorks(id) {
@@ -54,7 +54,7 @@ async function filtreWorks(id) {
     return renderWorks(filtreDeWorks);
 }
 
-function filtreBouttons(){
+/*function filtreBouttons(){
     const filtreBoutton = document.querySelectorAll(".bouttons button");
 
     for (let i=0; i<filtreBoutton.length; i++){
@@ -62,15 +62,15 @@ function filtreBouttons(){
             filtreWorks(i);
         })
     }
-}
+}*/
 
 async function init() {
     const works = await getWorks();
     renderWorks(works);
     getCategories();
     renderCategories();
-    const listeFiltres = await renderCategories();
-    filtreBouttons(listeFiltres);
+    //const listeFiltres = await renderCategories();
+    //filtreBouttons(listeFiltres);
 }
 
 init();
