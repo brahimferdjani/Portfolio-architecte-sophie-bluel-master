@@ -33,17 +33,34 @@ async function getCategories() {
     }
 }
 
+function effectTous () {
+    const bouttonTous = document.createElement("button");
+    const contentTous = document.createTextNode("tous");
+    bouttonTous.appendChild(contentTous);
+    console.log(bouttonTous);
+    const positionTous = document.querySelector(".bouttons");
+    positionTous.appendChild(bouttonTous);
+    bouttonTous.addEventListener("click", async ()=>{
+        const works = await getWorks();
+        renderWorks(works);
+    })
+
+
+}
+
 async function renderCategories() {
     const categories = await getCategories();
     let html = "";
     categories.forEach(category => {
+        let divButton = document.createElement("div");
         let htmlSegment = `<button id=${category.id}>${category.name}</button>`;
-        html += htmlSegment;
-    });
-    let bouttonTous = `<button id=0>Tous</button>`
-
-    const bouttons = document.querySelector(".bouttons");
-    bouttons.innerHTML = bouttonTous + html;    
+        divButton.innerHTML= htmlSegment;
+        divButton.querySelector("button").addEventListener("click", ()=>{
+            filtreWorks(category.id);   
+        }); 
+        const bouttons = document.querySelector(".bouttons");
+        bouttons.appendChild(divButton);
+    });    
 }
 
 async function filtreWorks(id) {
@@ -54,23 +71,12 @@ async function filtreWorks(id) {
     return renderWorks(filtreDeWorks);
 }
 
-/*function filtreBouttons(){
-    const filtreBoutton = document.querySelectorAll(".bouttons button");
-
-    for (let i=0; i<filtreBoutton.length; i++){
-        filtreBoutton[i].addEventListener("click",() =>{
-            filtreWorks(i);
-        })
-    }
-}*/
-
 async function init() {
     const works = await getWorks();
     renderWorks(works);
     getCategories();
+    effectTous();
     renderCategories();
-    //const listeFiltres = await renderCategories();
-    //filtreBouttons(listeFiltres);
 }
 
 init();
