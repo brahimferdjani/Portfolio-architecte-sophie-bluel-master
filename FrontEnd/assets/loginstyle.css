@@ -219,6 +219,11 @@ nav>ul::after {
 	clear: both;
 }
 
+nav li.login {
+	font-weight: 1000;
+	font-size: 20px;
+}
+
 form {
 	width: 50%;
 	margin: auto;
