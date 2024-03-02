@@ -219,58 +219,6 @@ nav>ul::after {
 	clear: both;
 }
 
-
-li:hover {
-	color: #B1663C;
-	font-size: 1.2em;
-	cursor: pointer;
-}
-
-#introduction {
-	display: flex;
-	align-items: center;
-}
-
-#introduction figure {
-	flex: 1
-}
-
-#introduction img {
-	display: block;
-	margin: auto;
-	width: 80%;
-}
-
-#introduction article {
-	flex: 1
-}
-
-#introduction h2 {
-	margin-bottom: 1em;
-}
-
-#introduction p {
-	margin-bottom: 0.5em;
-}
-
-#portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
-}
-
-.gallery {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
-}
-
-.gallery img {
-	width: 100%;
-
-}
-
 form {
 	width: 50%;
 	margin: auto;
@@ -290,6 +238,7 @@ form {
 	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
+	width: 30em;
 }
 
 form input {
@@ -322,5 +271,6 @@ input[type="submit"]:active {
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
-	margin: 2em
+	margin: 2em;
+	padding-top: 15em;
 }

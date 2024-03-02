@@ -33,14 +33,14 @@ async function getCategories() {
     }
 }
 
-function effectTous () {
+function effectTous() {
     const bouttonTous = document.createElement("button");
     const contentTous = document.createTextNode("tous");
     bouttonTous.appendChild(contentTous);
     console.log(bouttonTous);
     const positionTous = document.querySelector(".bouttons");
     positionTous.appendChild(bouttonTous);
-    bouttonTous.addEventListener("click", async ()=>{
+    bouttonTous.addEventListener("click", async () => {
         const works = await getWorks();
         renderWorks(works);
     })
@@ -54,13 +54,13 @@ async function renderCategories() {
     categories.forEach(category => {
         let divButton = document.createElement("div");
         let htmlSegment = `<button id=${category.id}>${category.name}</button>`;
-        divButton.innerHTML= htmlSegment;
-        divButton.querySelector("button").addEventListener("click", ()=>{
-            filtreWorks(category.id);   
-        }); 
+        divButton.innerHTML = htmlSegment;
+        divButton.querySelector("button").addEventListener("click", () => {
+            filtreWorks(category.id);
+        });
         const bouttons = document.querySelector(".bouttons");
         bouttons.appendChild(divButton);
-    });    
+    });
 }
 
 async function filtreWorks(id) {
