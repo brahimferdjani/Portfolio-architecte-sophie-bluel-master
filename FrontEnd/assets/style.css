@@ -90,6 +90,8 @@ video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	text-decoration: none;
+	color: black;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -185,10 +187,6 @@ nav ul {
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
-}
-
-nav li a {
-	text-decoration: none;
 }
 
 nav ul ul {
