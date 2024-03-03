@@ -1,24 +1,24 @@
 const form = document.querySelector("form");
 
-form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    let loginEmail = document.getElementById("loginemail");
-    let loginPassword = document.getElementById("password");
-    let email = loginEmail.value;
-    let password = loginPassword.value;
-    const emailRegEx = new RegExp("[A-Za-z._-]+@[a-z._-]+\\.[a-z._-]+");
-    /*if (!emailRegEx.test(email) || password === "") {
-        //throw new Error("mail invalid or password missing");
-    }*/
-    const login = {
-        email: event.target.email,
-        password: event.target.password
-    };
+let loginEmail = document.getElementById("#loginemail");
+let loginPassword = document.getElementById("#password");
 
-    const chargeUtile = JSON.stringify(login);
-    const reponse = fetch("http://localhost:5678/api/users/login", {
+function checkEmailError() {
+    const emailRegEx = new RegExp("[a-z._-]+@[a-z._-]+\\.[a-z._-]+");
+}
+
+form.addEventListener("submit", (event)=>{
+    event.preventDefault();
+    const login = {
+        email : event.target.querySelector("#loginemail").value,
+        password : event.target.querySelector("#password").value,
+      }
+      const chargeUtile = JSON.stringify(login);
+
+      fetch("http://localhost:5678/api/users/login", {
         method:"POST",
-        headers:{"Content-type":"application/json"},
+        headers:{"Content-Type": "application/json"},
         body: chargeUtile
-    })
+      });
+
 });
