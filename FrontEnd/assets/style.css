@@ -187,6 +187,10 @@ nav li {
 	font-size: 1.2em;
 }
 
+nav li a {
+	text-decoration: none;
+}
+
 nav ul ul {
 	display: none;
 	position: absolute;
