@@ -34,7 +34,12 @@ form.addEventListener("submit", async (event) => {
   let passwordValue = loginPassword.value;
   const loginResponse = await connect(emailValue, passwordValue);
   let tokenResponse = loginResponse.token;
+  console.log(tokenResponse);
   if (tokenResponse) {
+    const stringifyToken = JSON.stringify(tokenResponse);
+    console.log(stringifyToken);
+    localStorage.setItem("token", stringifyToken);
+    console.log(localStorage);
     window.location.replace("index.html");
   } else {
     alert("Erreur utilisateur ou mot de passe")
