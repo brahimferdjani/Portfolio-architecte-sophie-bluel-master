@@ -1,24 +1,37 @@
 const form = document.querySelector("form");
 
-let loginEmail = document.getElementById("#loginemail");
-let loginPassword = document.getElementById("#password");
+let loginEmail = document.getElementById("loginemail");
+let loginPassword = document.getElementById("password");
+
 
 function checkEmailError() {
-    const emailRegEx = new RegExp("[a-z._-]+@[a-z._-]+\\.[a-z._-]+");
+  const emailRegEx = new RegExp("[a-z._-]+@[a-z._-]+\\.[a-z._-]+");
 }
 
-form.addEventListener("submit", (event)=>{
-    event.preventDefault();
-    const login = {
-        email : event.target.querySelector("#loginemail").value,
-        password : event.target.querySelector("#password").value,
-      }
-      const chargeUtile = JSON.stringify(login);
+async function connect(mail, pwd) {
+  const url = "http://localhost:5678/api/users/login";
 
-      fetch("http://localhost:5678/api/users/login", {
-        method:"POST",
-        headers:{"Content-Type": "application/json"},
-        body: chargeUtile
-      });
+  const chargeUtile = JSON.stringify({
+    email: mail,
+    password: pwd
+  });
+  try {
+    const reponse = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: chargeUtile
+    });
+    return await reponse.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
 
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  let emailValue = loginEmail.value;
+  let passwordValue = loginPassword.value;
+  const loginResponse = await connect(emailValue, passwordValue);
+  console.log(loginResponse.token);
+  window.replace("");
 });
