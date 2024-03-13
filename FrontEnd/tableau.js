@@ -37,7 +37,6 @@ function effectTous() {
     const bouttonTous = document.createElement("button");
     const contentTous = document.createTextNode("tous");
     bouttonTous.appendChild(contentTous);
-    console.log(bouttonTous);
     const positionTous = document.querySelector(".bouttons");
     positionTous.appendChild(bouttonTous);
     bouttonTous.addEventListener("click", async () => {

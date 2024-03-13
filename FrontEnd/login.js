@@ -15,6 +15,7 @@ async function connect(mail, pwd) {
     email: mail,
     password: pwd
   });
+
   try {
     const reponse = await fetch(url, {
       method: "POST",
@@ -32,6 +33,10 @@ form.addEventListener("submit", async (event) => {
   let emailValue = loginEmail.value;
   let passwordValue = loginPassword.value;
   const loginResponse = await connect(emailValue, passwordValue);
-  console.log(loginResponse.token);
-  window.replace("");
+  let tokenResponse = loginResponse.token;
+  if (tokenResponse) {
+    window.location.replace("index.html");
+  } else {
+    alert("Erreur utilisateur ou mot de passe")
+  };
 });
