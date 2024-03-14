@@ -40,7 +40,7 @@ form.addEventListener("submit", async (event) => {
     console.log(stringifyToken);
     localStorage.setItem("token", stringifyToken);
     console.log(localStorage);
-    window.location.replace("index.html");
+    window.location.replace("modale.html");
   } else {
     alert("Erreur utilisateur ou mot de passe")
   };
