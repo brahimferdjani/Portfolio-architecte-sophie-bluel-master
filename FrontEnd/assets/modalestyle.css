@@ -146,22 +146,30 @@ body {
 
 body #modale {
     position: relative;
+    width: 123.5%;
     right: 11em;
-    width: 125%;
-    margin: auto;
     display: flex;
     justify-content: center;
     background-color: black;
     padding: 1.3em;
 }
 
+#modale button {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}
+
 #modale i.fa-pen-to-square {
     color: white;
-    padding: 0 1em;
 }
 
 #modale p {
     color: white;
+    padding-left: .5em;
 }
 
 header {
