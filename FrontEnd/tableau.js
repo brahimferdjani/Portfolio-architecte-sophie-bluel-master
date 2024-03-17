@@ -70,12 +70,86 @@ async function filtreWorks(id) {
     return renderWorks(filtreDeWorks);
 }
 
+function headSettingFontScript() {
+    if (localStorage.token) {
+        const htmlHead = document.querySelector("head");
+        const fontAwesomeScript = document.createElement("script");
+        fontAwesomeScript.setAttribute("src", "https://kit.fontawesome.com/53eb4fa86e.js");
+        fontAwesomeScript.setAttribute("crossorigin", "anonymous");
+        htmlHead.appendChild(fontAwesomeScript);
+        console.log(htmlHead);
+    }
+}
+
+function bannerModeEdition() {
+    if (localStorage.token) {
+        const body = document.querySelector("body");
+        const divBanner = document.createElement("div");
+        const iFontAwesome = document.createElement("i");
+        const textEdition = document.createElement("p");
+        const textEditionTitle = document.createTextNode("Mode édition");
+        textEdition.appendChild(textEditionTitle);
+        console.log(textEdition);
+        iFontAwesome.classList.add("fa-regular");
+        iFontAwesome.classList.add("fa-pen-to-square");
+        divBanner.appendChild(iFontAwesome);
+        divBanner.appendChild(textEdition);
+        divBanner.classList.add("modale");
+        body.prepend(divBanner);
+    }
+}
+
+function logout() {
+    if (localStorage.token) {
+        const ulNavbar = document.getElementById("navbar").children[2];
+        console.log(ulNavbar);
+        const logout = document.createElement("a");
+        const aText = "Logout";
+        logout.append(aText);
+        console.log(logout);
+        ulNavbar.replaceChildren(logout);
+    }
+}
+
+function buttonEdit () {
+    const portfolio = document.querySelector("section#portfolio");
+    console.log(portfolio);
+    const h2Title = document.querySelector("#portfolio h2");
+    console.log(h2Title);
+    const divWhole = document.createElement("div");
+    const divBanner = document.createElement("div");
+    const iFontAwesome = document.createElement("i");
+    const textEdition = document.createElement("p");
+    const textEditionTitle = document.createTextNode("Modifier");
+    textEdition.append(textEditionTitle);
+    textEdition.classList.add("align");
+    console.log(textEdition);
+    iFontAwesome.classList.add("fa-regular");
+    iFontAwesome.classList.add("fa-pen-to-square");
+    iFontAwesome.classList.add("align");
+    divBanner.append(iFontAwesome);
+    divBanner.append(textEdition);
+    divWhole.append(h2Title);
+    divWhole.append(divBanner);
+    divWhole.classList.add("portfolio");
+    divBanner.classList.add("portfolio");
+    console.log(divBanner);
+    console.log(divWhole);
+    portfolio.prepend(divWhole);
+}
+
 async function init() {
     const works = await getWorks();
     renderWorks(works);
     getCategories();
-    effectTous();
-    renderCategories();
+    if (!localStorage.token) {
+        effectTous();
+        renderCategories();
+    }
+    headSettingFontScript();
+    bannerModeEdition();
+    logout();
+    buttonEdit();
 }
 
 init();

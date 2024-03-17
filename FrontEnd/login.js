@@ -24,7 +24,7 @@ async function connect(mail, pwd) {
     });
     return await reponse.json();
   } catch (error) {
-    console.log(error);
+    console.log("catch de l'appel fetch", error);
   }
 }
 
@@ -34,13 +34,11 @@ form.addEventListener("submit", async (event) => {
   let passwordValue = loginPassword.value;
   const loginResponse = await connect(emailValue, passwordValue);
   let tokenResponse = loginResponse.token;
-  console.log(tokenResponse);
   if (tokenResponse) {
-    const stringifyToken = JSON.stringify(tokenResponse);
-    console.log(stringifyToken);
-    localStorage.setItem("token", stringifyToken);
+    console.log(tokenResponse);
+    localStorage.setItem("token", tokenResponse);
     console.log(localStorage);
-    window.location.replace("modale.html");
+    //window.location.replace("modale.html");
   } else {
     alert("Erreur utilisateur ou mot de passe")
   };

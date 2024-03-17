@@ -144,6 +144,26 @@ body {
 	font-size: 14px;
 }
 
+.modale {
+    position: relative;
+    width: 123.5%;
+    right: 11em;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    padding: 1.3em;
+}
+
+.modale p{
+	color: white;
+	padding-left: .5em;
+
+}
+
+.modale .fa-pen-to-square {
+	color: white;
+} 
+
 header {
 	display: flex;
 	justify-content: space-between;
@@ -241,6 +261,21 @@ nav>ul::after {
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
+}
+
+.portfolio {
+	display: flex;
+	justify-content: center;
+}
+
+i.align {
+	padding-top: .8em;
+	padding-left: 2em;
+}
+
+p.align {
+	padding-top: .8em;
+	padding-left: .5em;
 }
 
 #portfolio .bouttons {
