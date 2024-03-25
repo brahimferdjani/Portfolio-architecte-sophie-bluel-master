@@ -102,13 +102,10 @@ function bannerModeEdition() {
 
 function logout() {
     if (localStorage.token) {
-        const ulNavbar = document.getElementById("navbar").children[2];
-        console.log(ulNavbar);
-        const logout = document.createElement("a");
-        const aText = "Logout";
-        logout.append(aText);
-        console.log(logout);
-        ulNavbar.replaceChildren(logout);
+        const ulNavbar = document.querySelector("header nav ul li");
+        const loginSelect = ulNavbar.nextElementSibling.nextElementSibling;
+        const hrefSegment = "<a href=\"login.html\">logout</a>";
+        loginSelect.innerHTML = hrefSegment;
     }
 }
 
@@ -151,10 +148,10 @@ async function init() {
         effectTous();
         renderCategories();
     }
-    headSettingFontScript();
-    bannerModeEdition();
-    logout();
-    buttonEdit();
+  headSettingFontScript();
+   bannerModeEdition();
+   logout();
+   buttonEdit();
 }
 
 init();

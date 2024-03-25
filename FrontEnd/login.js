@@ -51,7 +51,7 @@ form.addEventListener("submit", async (event) => {
     console.log(tokenResponse);
     localStorage.setItem("token", tokenResponse);
     console.log(localStorage);
-    //window.location.replace("modale.html");
+    window.location.replace("index.html");
   }
   checkEmailError();
 });
