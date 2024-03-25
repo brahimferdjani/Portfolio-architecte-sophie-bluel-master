@@ -106,6 +106,9 @@ function logout() {
         const loginSelect = ulNavbar.nextElementSibling.nextElementSibling;
         const hrefSegment = "<a href=\"login.html\">logout</a>";
         loginSelect.innerHTML = hrefSegment;
+        loginSelect.addEventListener("click", ()=>{
+            localStorage.removeItem(token);
+        })
     }
 }
 
