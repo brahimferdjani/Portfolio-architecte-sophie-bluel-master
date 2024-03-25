@@ -2,10 +2,23 @@ const form = document.querySelector("form");
 
 let loginEmail = document.getElementById("loginemail");
 let loginPassword = document.getElementById("password");
+const formSelect = document.querySelector("form");
 
 
 function checkEmailError() {
-  const emailRegEx = new RegExp("[a-z._-]+@[a-z._-]+\\.[a-z._-]+");
+  let emailValue = loginEmail.value;
+  let pwdValue = loginPassword.value;
+  const trueEmail = "sophie.bluel@test.tld";
+  const truePwd = "S0phie";
+  const spanMail = document.querySelector("#error_mail");
+  const spanPwd = document.querySelector("#error_pwd");
+
+  if (emailValue === "" || emailValue != trueEmail){
+    spanMail.textContent = "Erreur utlisateur";
+  }
+  if (pwdValue == "" || pwdValue != truePwd){
+    spanPwd.textContent = "Erreur mot de passe";
+  };
 }
 
 async function connect(mail, pwd) {
@@ -39,7 +52,6 @@ form.addEventListener("submit", async (event) => {
     localStorage.setItem("token", tokenResponse);
     console.log(localStorage);
     //window.location.replace("modale.html");
-  } else {
-    alert("Erreur utilisateur ou mot de passe")
-  };
+  }
+  checkEmailError();
 });

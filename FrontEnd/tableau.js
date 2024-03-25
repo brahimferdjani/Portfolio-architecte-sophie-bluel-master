@@ -2,7 +2,8 @@ async function getWorks() {
     const url = "http://localhost:5678/api/works";
     try {
         const reponse = await fetch(url);
-        return await reponse.json();
+        return await reponse.json(); 
+
     } catch (error) {
         console.log(error);
     }
@@ -111,7 +112,9 @@ function logout() {
     }
 }
 
+
 function buttonEdit () {
+    if (localStorage.token){
     const portfolio = document.querySelector("section#portfolio");
     console.log(portfolio);
     const h2Title = document.querySelector("#portfolio h2");
@@ -136,9 +139,11 @@ function buttonEdit () {
     console.log(divBanner);
     console.log(divWhole);
     portfolio.prepend(divWhole);
+    }
 }
 
 async function init() {
+    console.log(localStorage.token);
     const works = await getWorks();
     renderWorks(works);
     getCategories();

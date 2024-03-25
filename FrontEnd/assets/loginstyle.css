@@ -279,3 +279,9 @@ footer nav ul {
 	margin: 2em;
 	padding-top: 15em;
 }
+
+#error_mail, #error_pwd {
+	color: red;
+	text-align: right;
+	margin-top: .5em;
+}
