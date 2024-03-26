@@ -2,7 +2,7 @@ async function getWorks() {
     const url = "http://localhost:5678/api/works";
     try {
         const reponse = await fetch(url);
-        return await reponse.json(); 
+        return await reponse.json();
 
     } catch (error) {
         console.log(error);
@@ -106,40 +106,61 @@ function logout() {
         const loginSelect = ulNavbar.nextElementSibling.nextElementSibling;
         const hrefSegment = "<a href=\"login.html\">logout</a>";
         loginSelect.innerHTML = hrefSegment;
-        loginSelect.addEventListener("click", ()=>{
-            localStorage.removeItem(token);
-        })
+        /* loginSelect.addEventListener("click", ()=>{
+             localStorage.removeItem(token);
+         }) */
     }
 }
 
 
-function buttonEdit () {
-    if (localStorage.token){
-    const portfolio = document.querySelector("section#portfolio");
-    console.log(portfolio);
-    const h2Title = document.querySelector("#portfolio h2");
-    console.log(h2Title);
-    const divWhole = document.createElement("div");
-    const divBanner = document.createElement("div");
-    const iFontAwesome = document.createElement("i");
-    const textEdition = document.createElement("p");
-    const textEditionTitle = document.createTextNode("Modifier");
-    textEdition.append(textEditionTitle);
-    textEdition.classList.add("align");
-    console.log(textEdition);
-    iFontAwesome.classList.add("fa-regular");
-    iFontAwesome.classList.add("fa-pen-to-square");
-    iFontAwesome.classList.add("align");
-    divBanner.append(iFontAwesome);
-    divBanner.append(textEdition);
-    divWhole.append(h2Title);
-    divWhole.append(divBanner);
-    divWhole.classList.add("portfolio");
-    divBanner.classList.add("portfolio");
-    console.log(divBanner);
-    console.log(divWhole);
-    portfolio.prepend(divWhole);
+function buttonEdit() {
+    if (localStorage.token) {
+        const portfolio = document.querySelector("#portfolio");
+        const modifierHtml = `<a href="#"><i class="fa-regular fa-pen-to-square"></i>modifier</a>`
+        const createDiv = document.createElement("div");
+        const createSpan = document.createElement("div");
+        const sectionH2 = document.querySelector("#portfolio h2");
+        createSpan.innerHTML = modifierHtml;
+        portfolio.prepend(createDiv);
+        createDiv.append(sectionH2);
+        createDiv.append(createSpan);
+        createDiv.setAttribute("class", "new_flex");
+        createSpan.setAttribute("class", "new_flex");
+        createSpan.classList.add("new_align");
     }
+}
+
+function editEvent() {
+    const h2Select = document.querySelector("#portfolio h2");
+    const aEditSelect = h2Select.nextElementSibling.firstChild;
+    console.log(aEditSelect);
+    aEditSelect.addEventListener("click", (event) => {
+        const popHTML = `<div class="popup">
+                            <a href=#><i class="fa-solid fa-x"></i></a>
+                            <h3>Galerie photo</h3>
+                            <div class="gallery"></div>
+                            <button class="button">Ajouter une photo</button>
+                        </div>`;
+        const createDiv = document.createElement("div");
+        createDiv.innerHTML = popHTML;
+        createDiv.setAttribute("class", "popupBackground");
+        createDiv.classList.add("active");
+        const bodySelect = document.querySelector("body");
+        bodySelect.prepend(createDiv);
+        event.preventDefault();
+
+        const xSelect = document.querySelector(".popup a");
+        xSelect.addEventListener("click", (event)=>{
+            createDiv.classList.remove("active");
+            event.preventDefault();
+        })
+    })
+}
+
+function closeEdit () {
+    const popupBackground = document.querySelector(".popupBackground")
+    const xSelect = document.querySelector(".popup i.fa-x");
+    console.log();
 }
 
 async function init() {
@@ -151,10 +172,11 @@ async function init() {
         effectTous();
         renderCategories();
     }
-  headSettingFontScript();
-   bannerModeEdition();
-   logout();
-   buttonEdit();
+    headSettingFontScript();
+    bannerModeEdition();
+    logout();
+    buttonEdit();
+    editEvent();
 }
 
 init();

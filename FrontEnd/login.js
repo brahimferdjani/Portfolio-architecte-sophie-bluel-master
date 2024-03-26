@@ -13,13 +13,21 @@ function checkEmailError() {
   const spanMail = document.querySelector("#error_mail");
   const spanPwd = document.querySelector("#error_pwd");
 
-  if (emailValue === "" || emailValue != trueEmail){
+  if (emailValue == "" || emailValue != trueEmail){
     spanMail.textContent = "Erreur utlisateur";
   }
   if (pwdValue == "" || pwdValue != truePwd){
     spanPwd.textContent = "Erreur mot de passe";
   };
 }
+
+function pageIndex () {
+  const liSelect = document.querySelector("header nav ul li");
+  const hrefSegment = "<a href=\"index.html\">projets<a>";
+  liSelect.innerHTML =hrefSegment;
+}
+
+pageIndex();
 
 async function connect(mail, pwd) {
   const url = "http://localhost:5678/api/users/login";
