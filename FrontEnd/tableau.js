@@ -152,8 +152,10 @@ function editEvent() {
         let html = "";
         works.forEach(work => {
             let htmlSegment = `<div class="images_edit">
+                        <a href=#>
                         <i class="fa-solid fa-trash-can">
                         </i><img src="${work.imageUrl}">
+                        </a>
                         </div>`;
             html += htmlSegment;
         });
