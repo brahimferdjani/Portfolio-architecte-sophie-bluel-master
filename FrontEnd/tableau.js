@@ -134,7 +134,7 @@ function editEvent() {
     const h2Select = document.querySelector("#portfolio h2");
     const aEditSelect = h2Select.nextElementSibling.firstChild;
     console.log(aEditSelect);
-    aEditSelect.addEventListener("click", (event) => {
+    aEditSelect.addEventListener("click", async (event) => {
         const popHTML = `<div class="popup">
                             <a href=#><i class="fa-solid fa-x"></i></a>
                             <h3>Galerie photo</h3>
@@ -147,17 +147,29 @@ function editEvent() {
         createDiv.classList.add("active");
         const bodySelect = document.querySelector("body");
         bodySelect.prepend(createDiv);
+        const works = await getWorks();
+        renderWorks(works);
+        let html = "";
+        works.forEach(work => {
+            let htmlSegment = `<div class="images_edit">
+                        <i class="fa-solid fa-trash-can">
+                        </i><img src="${work.imageUrl}">
+                        </div>`;
+            html += htmlSegment;
+        });
+        const gallery = document.querySelector(".gallery");
+        gallery.innerHTML = html;
         event.preventDefault();
 
         const xSelect = document.querySelector(".popup a");
-        xSelect.addEventListener("click", (event)=>{
+        xSelect.addEventListener("click", (event) => {
             createDiv.classList.remove("active");
             event.preventDefault();
         })
     })
 }
 
-function closeEdit () {
+function closeEdit() {
     const popupBackground = document.querySelector(".popupBackground")
     const xSelect = document.querySelector(".popup i.fa-x");
     console.log();

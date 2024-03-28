@@ -401,7 +401,7 @@ i.fa-pen-to-square {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    width: 300px;
+    width: 355px;
     padding: 20px;
     text-align: center;
     color: white;
@@ -438,4 +438,23 @@ i.fa-pen-to-square {
 
 .popup .gallery {
 	border-bottom: 1px solid black;
+	padding: 2em 0;
+	grid-template-columns: repeat(5, 50px);
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
+	justify-content: center;
+
+}
+
+.images_edit {
+	position: relative;
+}
+.images_edit i.fa-trash-can {
+	font-size: x-small;
+	color: white;
+	background-color: black;
+	padding: .3em;
+	position: absolute;
+	right: .3em;
+	top: .3em;
 }
